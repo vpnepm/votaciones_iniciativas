@@ -5,100 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Votación Big Rocks</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,700&display=swap');
     :root{
-      --bg:#f2f4f2; --card:#ffffff; --ink:#17211c; --muted:#68736c;
-      --line:#dde3dd; --accent:#0f6e56; --accent-d:#0b5644; --accent-soft:#e3efe9;
-      --bad:#b4452f; --gold:#caa53d;
+      --citric:#7AD400; --forest:#007934; --forest-deep:#00opc;
+      --bg:#F6F7F6; --card:#ffffff; --ink:#333333; --muted:#6E726E;
+      --line:#DCDFDC; --accent:#007934; --accent-d:#00612a; --accent-soft:#E6F0EA;
+      --citric-tint:#E4F6C2; --bad:#B23B2E; --gold:#caa53d;
+      --font-display:'Nunito',"Arial Rounded MT Bold",Arial,sans-serif;
+      --font-body:'Carlito',Calibri,Arial,sans-serif;
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      font-family:var(--font-body);
       line-height:1.5;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:720px;margin:0 auto;padding:24px 16px 70px}
-    .nav{display:flex;gap:8px;margin-bottom:18px}
-    .nav a{font-size:13px;text-decoration:none;color:var(--muted);
-      padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:#fff}
-    .nav a.activo{color:#fff;background:var(--accent);border-color:var(--accent)}
-    .brand{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;
-      font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px;margin-left:auto}
-    h1{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
-    .sub{color:var(--muted);font-size:15px;margin:0 0 20px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
-    label.f{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+    a{text-decoration:none}
+    .topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+    .topbar-rule{height:4px;background:var(--citric)}
+    .topbar-inner{max-width:760px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:14px}
+    .brandmark{display:flex;align-items:center;gap:10px}
+    .brandmark img{height:30px;width:auto;display:block}
+    .brandmark .tag{font-family:var(--font-display);font-weight:800;font-size:13px;color:var(--forest);
+      letter-spacing:.02em;white-space:nowrap}
+    .wrap{max-width:760px;margin:0 auto;padding:28px 16px 80px}
+    .nav{display:flex;gap:8px;margin-left:auto}
+    .nav a{font-size:13px;font-weight:700;text-decoration:none;color:var(--muted);font-family:var(--font-body);
+      padding:8px 16px;border:1.5px solid var(--line);border-radius:999px;background:#fff;transition:.15s}
+    .nav a.activo{color:#fff;background:var(--forest);border-color:var(--forest)}
+    .rule{width:56px;height:4px;background:var(--citric);border-radius:2px;margin:0 0 14px}
+    h1{font-family:var(--font-display);font-size:26px;font-weight:800;letter-spacing:-.01em;
+      color:var(--forest);margin:0 0 6px}
+    .sub{color:var(--muted);font-size:15px;margin:0 0 24px;max-width:56ch}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;
+      box-shadow:0 2px 6px rgba(31,33,31,0.05)}
+    label.f{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px;
+      text-transform:uppercase;letter-spacing:.04em;font-family:var(--font-display)}
     input[type=text],textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;
-      padding:11px 12px;font:inherit;color:var(--ink);background:#fff;outline:none}
-    input[type=text]:focus,textarea:focus{border-color:var(--accent)}
+      padding:11px 12px;font:inherit;color:var(--ink);background:#fff;outline:none;transition:.15s}
+    input[type=text]:focus,textarea:focus{border-color:var(--forest);box-shadow:0 0 0 3px var(--accent-soft)}
     .fila{display:flex;gap:12px;flex-wrap:wrap}
     .fila>div{flex:1;min-width:180px}
     .tipo{display:flex;gap:8px;margin-top:4px}
     .tipo label{flex:1;position:relative}
     .tipo input{position:absolute;inset:0;opacity:0;cursor:pointer}
     .tipo span{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;
-      border:1.5px solid var(--line);border-radius:10px;font-weight:600;color:var(--muted);cursor:pointer}
-    .tipo input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff}
+      border:1.5px solid var(--line);border-radius:999px;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s;
+      font-family:var(--font-display);font-size:14px}
+    .tipo input:checked+span{background:var(--forest);border-color:var(--forest);color:#fff}
+    .tipo input:focus-visible+span{outline:2px solid var(--citric);outline-offset:2px}
     #cajaCodigo{display:none;margin-top:12px}
     /* Acordeón de big rocks */
-    .rock{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+    .rock{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden;
+      box-shadow:0 2px 6px rgba(31,33,31,0.05);transition:box-shadow .15s;border-left:4px solid transparent}
+    .rock.abierto{border-left-color:var(--citric);box-shadow:0 6px 18px rgba(31,33,31,0.08)}
     .rock-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;user-select:none}
-    .rock-num{width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:var(--accent-soft);
-      color:var(--accent);font-weight:800;display:flex;align-items:center;justify-content:center}
-    .rock-nombre{font-weight:700;font-size:15px;flex:1}
-    .rock-estado{font-size:12px;font-weight:700;color:var(--muted)}
-    .rock-estado.listo{color:var(--accent)}
+    .rock-num{width:36px;height:36px;flex:0 0 36px;border-radius:10px;background:var(--accent-soft);
+      color:var(--forest);font-weight:800;font-family:var(--font-display);display:flex;align-items:center;justify-content:center}
+    .rock-nombre{font-weight:700;font-family:var(--font-display);font-size:15px;flex:1;color:var(--ink)}
+    .rock-estado{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;
+      font-family:var(--font-display)}
+    .rock-estado.listo{color:var(--forest)}
     .chev{color:var(--muted);transition:.2s}
-    .rock.abierto .chev{transform:rotate(180deg)}
+    .rock.abierto .chev{transform:rotate(180deg);color:var(--forest)}
     .rock-body{display:none;padding:0 18px 18px;border-top:1px solid var(--line)}
     .rock.abierto .rock-body{display:block}
     /* Criterio */
-    .crit{border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:14px}
+    .crit{border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
     .crit-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-    .crit-nombre{font-weight:700;font-size:15px}
-    .pts{font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);
-      padding:4px 12px;border-radius:999px;white-space:nowrap}
+    .crit-nombre{font-weight:700;font-family:var(--font-display);font-size:14.5px}
+    .pts{font-size:12px;font-weight:700;color:var(--forest);background:var(--citric-tint);
+      padding:4px 12px;border-radius:999px;white-space:nowrap;font-family:var(--font-display)}
     .escala{display:flex;gap:8px;justify-content:center;margin:6px 0 12px}
     .opt{position:relative}
     .opt input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
     .opt span{display:flex;align-items:center;justify-content:center;width:46px;height:46px;
-      border:1.5px solid var(--line);border-radius:50%;font-weight:700;color:var(--muted);
+      border:1.5px solid var(--line);border-radius:12px;font-weight:800;color:var(--muted);
+      font-family:var(--font-display);
       transition:.12s;cursor:pointer;user-select:none;background:#fff}
-    .opt input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff;
-      box-shadow:0 0 0 4px var(--accent-soft)}
-    .opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+    .opt input:checked+span{background:var(--forest);border-color:var(--forest);color:#fff;
+      box-shadow:0 0 0 4px var(--citric-tint)}
+    .opt input:focus-visible+span{outline:2px solid var(--citric);outline-offset:2px}
     .anclas{display:flex;gap:10px}
-    .anclas div{flex:1;font-size:12.5px;color:var(--muted);background:#f6f8f6;
+    .anclas div{flex:1;font-size:12.5px;color:var(--muted);background:var(--bg);
       border:1px solid var(--line);border-radius:10px;padding:10px 12px}
     .anclas div:last-child{text-align:right}
     .crit.falta{border-color:var(--bad)}
     .crit.falta .crit-nombre::after{content:" • falta";color:var(--bad);font-size:12px}
-    .btn-rock{width:100%;border:0;border-radius:11px;background:var(--accent);color:#fff;
-      font:inherit;font-weight:700;font-size:15px;padding:13px;cursor:pointer;margin-top:14px}
+    .btn-rock{width:100%;border:0;border-radius:999px;background:var(--forest);color:#fff;
+      font:inherit;font-family:var(--font-display);font-weight:800;font-size:15px;padding:13px;cursor:pointer;margin-top:16px;
+      transition:.15s}
     .btn-rock:hover{background:var(--accent-d)}
     .btn-rock:disabled{opacity:.55;cursor:default}
     .msg-rock{font-size:13.5px;margin-top:8px;min-height:16px}
     .msg-rock.err{color:var(--bad)}
-    .msg-rock.okmsg{color:var(--accent);font-weight:600}
-    .votado{display:flex;align-items:center;gap:10px;background:var(--accent-soft);
-      border-radius:11px;padding:14px;margin-top:14px;color:var(--accent);font-weight:700}
+    .msg-rock.okmsg{color:var(--forest);font-weight:600}
+    .votado{display:flex;align-items:center;gap:10px;background:var(--citric-tint);
+      border-radius:12px;padding:14px;margin-top:14px;color:var(--forest);font-weight:700}
     .cargando{color:var(--muted);text-align:center;padding:40px}
-    .reset{display:none;margin-top:12px;font-size:13px;color:var(--muted)}
-    .reset button{background:none;border:none;padding:0;font:inherit;color:var(--accent);
-      font-weight:600;cursor:pointer;text-decoration:underline}
-    .error-caja{border:1px solid var(--bad);color:var(--bad);border-radius:14px;padding:16px;background:#fff}
+    .reset{display:none;margin-top:14px;font-size:13px;color:var(--muted)}
+    .reset button{background:none;border:none;padding:0;font:inherit;color:var(--forest);
+      font-weight:700;cursor:pointer;text-decoration:underline}
+    .error-caja{border:1px solid var(--bad);color:var(--bad);border-radius:16px;padding:16px;background:#fff}
     @media(max-width:480px){
       .opt span{width:40px;height:40px}
       .anclas{flex-direction:column}
       .anclas div:last-child{text-align:left}
+      .brandmark .tag{display:none}
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brandmark" href="index.html">
+        <img src="logo_epm_brand.png" alt="EPM">
+        <span class="tag">Big Rocks</span>
+      </a>
+      <nav class="nav">
+        <a class="activo" href="index.html">Votar</a>
+        <a href="resultados.html">Resultados</a>
+      </nav>
+    </div>
+    <div class="topbar-rule"></div>
+  </div>
   <div class="wrap">
-    <nav class="nav">
-      <a class="activo" href="index.html">Votar</a>
-      <a href="resultados.html">Resultados</a>
-      <span class="brand">Grupo epm</span>
-    </nav>
-
+    <div class="rule"></div>
     <h1>Votación Big Rocks</h1>
     <p class="sub">Ingresa tus datos y califica cada big rock a medida que se expone. Cada criterio se califica de 1 a 5.</p>
 
