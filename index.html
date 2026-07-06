@@ -279,7 +279,7 @@
 
         div.innerHTML =
           '<div class="rock-head" onclick="toggleRock(\'' + rock.id + '\')">' +
-            '<div class="rock-num">' + esc(rock.id) + '</div>' +
+            '<div class="rock-num">' + (i + 1) + '</div>' +
             '<div class="rock-nombre">' + esc(rock.nombre) + '</div>' +
             '<div class="rock-estado" id="estado_' + rock.id + '">Pendiente</div>' +
             '<div class="chev">▾</div>' +
