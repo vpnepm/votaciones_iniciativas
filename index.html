@@ -40,7 +40,7 @@
       box-shadow:0 2px 6px rgba(31,33,31,0.05)}
     label.f{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px;
       text-transform:uppercase;letter-spacing:.04em;font-family:var(--font-display)}
-    input[type=text],textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;
+    input[type=text],select,textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;
       padding:11px 12px;font:inherit;color:var(--ink);background:#fff;outline:none;transition:.15s}
     input[type=text]:focus,textarea:focus{border-color:var(--forest);box-shadow:0 0 0 3px var(--accent-soft)}
     .fila{display:flex;gap:12px;flex-wrap:wrap}
@@ -141,14 +141,16 @@
         </div>
         <div>
           <label class="f" for="area">Área / equipo</label>
-          <input type="text" id="area" placeholder="Tu área">
+          <select id="area">
+            <option value="">Selecciona tu área…</option>
+          </select>
         </div>
       </div>
       <div style="margin-top:14px">
         <label class="f">Tipo de votante</label>
         <div class="tipo">
-          <label><input type="radio" name="tipo" value="Público" checked><span>Público</span></label>
-          <label><input type="radio" name="tipo" value="Comité"><span>Comité técnico</span></label>
+          <label><input type="radio" name="tipo" value="Público" checked><span>Participantes</span></label>
+          <label><input type="radio" name="tipo" value="Comité"><span>Comité patrocinador</span></label>
         </div>
         <div id="cajaCodigo">
           <label class="f" for="codigo">Código del comité</label>
@@ -246,6 +248,14 @@
     }
 
     function pintar() {
+      // Poblar el desplegable de áreas desde la hoja
+      var sel = document.getElementById('area');
+      (CFG.areas || []).forEach(function (a) {
+        var op = document.createElement('option');
+        op.value = a; op.textContent = a;
+        sel.appendChild(op);
+      });
+
       var cont = document.getElementById('rocks');
       cont.innerHTML = '';
       CFG.bigrocks.forEach(function (rock, i) {
