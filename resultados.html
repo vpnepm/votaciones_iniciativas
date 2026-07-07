@@ -53,39 +53,28 @@
       font-family:var(--font-display)}
     .kpi .v{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:4px 0;font-family:var(--font-display);color:var(--ink)}
     .kpi .s{font-size:12px;color:var(--muted)}
-    /* Podio */
-    .podio{display:flex;align-items:flex-end;gap:12px;margin-bottom:8px}
-    .pcol{flex:1;display:flex;flex-direction:column}
-    .pcard{background:var(--card);border:2px solid var(--line);border-radius:16px 16px 0 0;
-      padding:20px 14px;text-align:center;position:relative;border-bottom:0}
-    .pcol.oro .pcard{border-color:var(--gold)}
-    .pcol.plata .pcard{border-color:var(--silver)}
-    .pcol.bronce .pcard{border-color:var(--bronze)}
-    .medalla{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-family:var(--font-display);color:#fff;margin:-36px auto 8px;border:3px solid var(--bg)}
-    .oro .medalla{background:var(--gold)} .plata .medalla{background:var(--silver)} .bronce .medalla{background:var(--bronze)}
-    .pnombre{font-weight:700;font-family:var(--font-display);font-size:13.5px;min-height:60px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
-    .pfinal{font-size:34px;font-weight:800;letter-spacing:-.03em;font-family:var(--font-display)}
-    .oro .pfinal{color:var(--gold)} .plata .pfinal{color:var(--silver)} .bronce .pfinal{color:var(--bronze)}
-    .pfinal small{font-size:13px;color:var(--muted);font-weight:600}
-    .pvotos{font-size:12px;color:var(--muted)}
-    .pnota{font-size:11px;color:var(--bronze);font-weight:700;margin-top:4px;min-height:14px}
-    .pbase{color:#fff;font-weight:800;font-size:22px;font-family:var(--font-display);text-align:center;border-radius:0 0 12px 12px;
-      display:flex;align-items:center;justify-content:center}
-    .oro .pbase{background:var(--gold);height:86px}
-    .plata .pbase{background:var(--silver);height:58px}
-    .bronce .pbase{background:var(--bronze);height:40px}
-    /* Resto ranking */
-    .resto-t{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px;
-      font-family:var(--font-display)}
-    .fila-r{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    /* Ranking (lista) */
+    .rk-fila{background:var(--card);border:1px solid var(--line);border-radius:14px;
       display:flex;align-items:center;gap:14px;padding:14px 16px;margin-bottom:8px}
-    .fila-r .pos{font-weight:800;color:var(--muted);width:30px;font-family:var(--font-display)}
-    .fila-r .nom{flex:1;font-weight:700;font-size:14.5px}
-    .fila-r .fin{font-weight:800;font-size:19px;color:var(--accent);font-family:var(--font-display)}
-    .fila-r .fin small{font-size:11px;color:var(--muted);font-weight:600}
-    .fila-r .vts{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap}
-    .fila-r .flag{font-size:11px;color:var(--bronze);font-weight:700}
+    .rk-pos{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-family:var(--font-display);font-size:15px;background:#EFEFEC;color:var(--muted)}
+    .rk-pos.p1{background:var(--gold);color:#fff}
+    .rk-pos.p2{background:var(--silver);color:#fff}
+    .rk-pos.p3{background:var(--bronze);color:#fff}
+    .rk-body{flex:1;min-width:0}
+    .rk-nom{font-weight:700;font-size:14.5px;margin-bottom:7px;font-family:var(--font-display);color:var(--ink)}
+    .rk-bar{height:9px;background:#EEF0ED;border-radius:6px;overflow:hidden}
+    .rk-bar i{display:block;height:100%;border-radius:6px;background:var(--accent)}
+    .rk-bar i.p1{background:var(--gold)}
+    .rk-bar i.p2{background:var(--silver)}
+    .rk-bar i.p3{background:var(--bronze)}
+    .rk-meta{font-size:12px;color:var(--muted);margin-top:7px}
+    .rk-fin{font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--accent);flex-shrink:0;text-align:right}
+    .rk-fin.p1{color:var(--gold)}
+    .rk-fin.p2{color:var(--silver)}
+    .rk-fin.p3{color:var(--bronze)}
+    .rk-fin small{font-size:12px;color:var(--muted);font-weight:600}
+    .flag{font-size:11px;color:var(--bronze);font-weight:700}
     /* Observaciones */
     h2{font-size:18px;font-weight:800;margin:30px 0 10px;font-family:var(--font-display);color:var(--accent)}
     .obs{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--citric);
@@ -96,11 +85,7 @@
     .vacio{color:var(--muted);text-align:center;padding:46px;background:#fff;border:1px solid var(--line);border-radius:16px}
     .cargando{color:var(--muted);text-align:center;padding:46px}
     @media(max-width:640px){
-      .podio{flex-direction:column;align-items:stretch}
-      .pcol{order:2} .pcol.oro{order:1}
-      .pbase{height:34px !important}
-      .medalla{margin-top:-16px}
-      .pnombre{min-height:0}
+      .rk-fin{font-size:18px}
       .brandmark .tag{display:none}
     }
   </style>
@@ -152,7 +137,7 @@
 
     function pintar(d) {
       document.getElementById('pesoTxt').textContent =
-        'Puntaje sobre 100 · Comité ' + d.pesoComite + '% · Público ' + d.pesoPublico + '%';
+        'Puntaje sobre 100 · Comité patrocinador ' + d.pesoComite + '% · Participantes ' + d.pesoPublico + '%';
 
       var html = '';
 
@@ -161,8 +146,6 @@
         kpi('Calificaciones', d.totalVotos, 'votos registrados') +
         kpi('Evaluadores', d.votantesUnicos, 'personas únicas') +
         kpi('Big rocks', d.numBigRocks, 'en evaluación') +
-        kpi('Promedio global', d.promedioGlobal === null ? '—' : d.promedioGlobal,
-            d.numComentarios + ' comentarios escritos') +
       '</div>';
 
       var conDatos = d.resumen.filter(function (r) { return r.final !== null; });
@@ -171,42 +154,23 @@
       if (!conDatos.length) {
         html += '<div class="vacio">Todavía no hay votos. Comparte el link para empezar.</div>';
       } else {
-        // Podio (hasta 3)
-        var top = conDatos.slice(0, 3);
-        var clases = ['oro', 'plata', 'bronce'];
-        var orden = top.length === 3 ? [1, 0, 2] : (top.length === 2 ? [1, 0] : [0]);
-        html += '<div class="podio">';
-        orden.forEach(function (idx) {
-          var r = top[idx];
-          var cl = clases[idx];
-          html += '<div class="pcol ' + cl + '">' +
-            '<div class="pcard">' +
-              '<div class="medalla">' + (idx + 1) + '</div>' +
-              '<div class="pnombre">' + esc(r.nombre) + '</div>' +
-              '<div class="pfinal">' + r.final.toFixed(1) + ' <small>/ 100</small></div>' +
-              '<div class="pvotos">' + r.votos + ' votos (' + r.votosComite + ' comité · ' + r.votosPublico + ' público)</div>' +
-              '<div class="pnota">' + flag(r.estado) + '</div>' +
+        var lista = conDatos.concat(sinDatos);
+        lista.forEach(function (r, i) {
+          var pos = (r.final === null) ? null : (i + 1);
+          var cl = pos === 1 ? 'p1' : pos === 2 ? 'p2' : pos === 3 ? 'p3' : '';
+          var pct = (r.final === null) ? 0 : Math.max(4, Math.round(r.final));
+          html += '<div class="rk-fila">' +
+            '<div class="rk-pos ' + cl + '">' + (pos === null ? '—' : pos + '°') + '</div>' +
+            '<div class="rk-body">' +
+              '<div class="rk-nom">' + esc(r.nombre) +
+                (flag(r.estado) ? ' <span class="flag">' + flag(r.estado) + '</span>' : '') + '</div>' +
+              '<div class="rk-bar"><i class="' + cl + '" style="width:' + pct + '%"></i></div>' +
+              '<div class="rk-meta">' + r.votos + ' ' + (r.votos === 1 ? 'voto' : 'votos') +
+                ' (' + r.votosComite + ' comité patrocinador · ' + r.votosPublico + ' participantes)</div>' +
             '</div>' +
-            '<div class="pbase">' + (idx + 1) + '°</div>' +
+            '<div class="rk-fin ' + cl + '">' + (r.final === null ? '<small>Sin votos</small>' : r.final.toFixed(1) + ' <small>/100</small>') + '</div>' +
           '</div>';
         });
-        html += '</div>';
-
-        // Resto del ranking
-        var resto = conDatos.slice(3).concat(sinDatos);
-        if (resto.length) {
-          html += '<div class="resto-t">Resto del ranking</div>';
-          resto.forEach(function (r, i) {
-            var pos = i + 4;
-            html += '<div class="fila-r">' +
-              '<div class="pos">' + (r.final === null ? '—' : pos + '°') + '</div>' +
-              '<div class="nom">' + esc(r.nombre) +
-                (flag(r.estado) ? ' <span class="flag">' + flag(r.estado) + '</span>' : '') + '</div>' +
-              '<div class="vts">' + r.votos + ' votos</div>' +
-              '<div class="fin">' + (r.final === null ? 'Sin votos' : r.final.toFixed(1) + ' <small>/100</small>') + '</div>' +
-            '</div>';
-          });
-        }
       }
 
       // Observaciones
@@ -216,7 +180,7 @@
           html += '<div class="obs">' +
             '<span class="rockTag">' + esc(corto(o.bigrock)) + '</span><br>' +
             esc(o.texto) +
-            '<div class="quien">' + esc([o.nombre, o.area, o.tipo].filter(Boolean).join(' · ')) + '</div>' +
+            '<div class="quien">' + esc([o.nombre, o.area, tipoNombre(o.tipo)].filter(Boolean).join(' · ')) + '</div>' +
           '</div>';
         });
       }
@@ -228,9 +192,14 @@
       return '<div class="kpi"><div class="t">' + t + '</div><div class="v">' + v + '</div><div class="s">' + s + '</div></div>';
     }
     function flag(estado) {
-      if (estado === 'pendiente comité') return 'Pendiente comité';
-      if (estado === 'pendiente público') return 'Pendiente público';
+      if (estado === 'pendiente comité') return 'Pendiente comité patrocinador';
+      if (estado === 'pendiente público') return 'Pendiente participantes';
       return '';
+    }
+    function tipoNombre(t) {
+      if (t === 'Comité') return 'Comité patrocinador';
+      if (t === 'Público') return 'Participante';
+      return t;
     }
     function corto(nombre) {
       var m = String(nombre).match(/^Big Rock \d+/i);
